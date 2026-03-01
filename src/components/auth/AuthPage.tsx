@@ -239,7 +239,7 @@ export function AuthPage() {
         </div>
 
         <p className="text-sm text-muted-foreground">
-          © 2024 KaarigarConnect. All rights reserved.
+          © 2024 <b>KaarigarConnect</b>. All rights reserved.
         </p>
       </div>
 
@@ -248,10 +248,8 @@ export function AuthPage() {
         <Card className="w-full max-w-md shadow-subtle border-border/50">
           <CardHeader className="text-center pb-4">
             <div className="lg:hidden flex items-center justify-center gap-2 mb-6">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
-                K
-              </div>
-              <span className="font-semibold text-lg text-foreground">KaarigarConnect</span>
+              
+              <span className="font-semibold text-lg text-foreground"><b>KaarigarConnect</b></span>
             </div>
             <CardTitle className="text-2xl">
               {activeTab === 'login' ? 'Welcome back' : 'Create account'}

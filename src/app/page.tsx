@@ -87,13 +87,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground font-bold text-sm">
-                K
-              </div>
-              <span className="font-medium text-foreground text-sm">KaarigarConnect</span>
+              
+              <span className="font-medium text-foreground text-sm"><b>KaarigarConnect</b></span>
             </div>
             <p className="text-xs text-muted-foreground">
-              © 2024 KaarigarConnect. Connecting skilled workers with customers.
+              © 2026 <b>KaarigarConnect</b>. Connecting skilled workers with customers.
             </p>
           </div>
         </div>

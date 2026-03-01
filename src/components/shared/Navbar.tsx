@@ -152,11 +152,10 @@ export function Navbar({ unreadCount, notifications, onMarkAsRead, onRefreshNoti
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-lg">
-              K
-            </div>
+            
             <span className="hidden font-semibold text-lg text-foreground sm:inline-block">
-              KaarigarConnect
+              <b>KaarigarConnect</b>
+              
             </span>
           </Link>
 
