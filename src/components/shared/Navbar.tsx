@@ -154,7 +154,7 @@ export function Navbar({ unreadCount, notifications, onMarkAsRead, onRefreshNoti
           <Link href="/" className="flex items-center gap-2.5">
             
             <span className="hidden font-semibold text-lg text-foreground sm:inline-block">
-              <b>KaarigarConnect</b>
+              <b>KaarigarConnect.</b>
               
             </span>
           </Link>

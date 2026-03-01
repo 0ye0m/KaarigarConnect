@@ -214,7 +214,7 @@ export function AuthPage() {
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xl">
               K
             </div>
-            <span className="font-semibold text-xl text-foreground">KaarigarConnect</span>
+            <span className="font-semibold text-xl text-foreground">KaarigarConnect.</span>
           </div>
         </div>
 
@@ -239,7 +239,7 @@ export function AuthPage() {
         </div>
 
         <p className="text-sm text-muted-foreground">
-          © 2024 <b>KaarigarConnect</b>. All rights reserved.
+          © 2026 <b>KaarigarConnect.</b>. All rights reserved.
         </p>
       </div>
 
