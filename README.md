@@ -55,17 +55,18 @@ cd kaarigarconnect
 
 2. Install dependencies:
 ```bash
-bun install
+npm install
 ```
 
 3. Set up environment variables:
 ```bash
-DATABASE_URL="file:./db/custom.db"
+DATABASE_URL="SUPABASE_DB_URL"
+DIRECT_URL="SUPABASE_DIRECT_URL"
 ```
 
 4. Push database schema:
 ```bash
-bun run db:push
+npm run db:push
 ```
 
 5. Seed the database with demo data:
@@ -75,7 +76,7 @@ curl -X POST http://localhost:3000/api/seed
 
 6. Start the development server:
 ```bash
-bun run dev
+npm run dev
 ```
 
 ## 🔑 Demo Accounts
@@ -169,12 +170,12 @@ The application is fully responsive with:
 
 1. Build the application:
 ```bash
-bun run build
+npm run build
 ```
 
 2. Start the production server:
 ```bash
-bun run start
+npm run start
 ```
 
 ## 📝 API Endpoints
@@ -209,9 +210,7 @@ bun run start
 ### Admin
 - `GET /api/admin/users` - Get all users
 
-## 📄 License
 
-MIT License - feel free to use this project for personal or commercial purposes.
 
 ---
 
