@@ -1,0 +1,146 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// User profiles - extends auth.users
+model Profile {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  full_name  String?
+  phone      String?
+  password   String?
+  role       String   @default("customer") // customer | worker | admin
+  avatar_url String?
+  city       String?
+  address    String?
+  latitude   Float?
+  longitude  Float?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // Relations
+  worker_profile   WorkerProfile?
+  customerBookings Booking[]         @relation("CustomerBookings")
+  sent_messages    Message[]
+  reviews          Review[]
+  notifications    Notification[]
+
+  @@map("profiles")
+}
+
+// Worker-specific profiles
+model WorkerProfile {
+  id               String   @id @default(uuid())
+  user_id          String   @unique
+  skill_category   String   // plumber | electrician | carpenter | painter | mechanic | cleaner | mason | welder
+  experience_years Int      @default(0)
+  bio              String?
+  hourly_rate      Float    @default(0)
+  is_available     Boolean  @default(true)
+  is_verified      Boolean  @default(false)
+  total_jobs       Int      @default(0)
+  rating           Float    @default(0)
+  rating_count     Int      @default(0)
+  latitude         Float?
+  longitude        Float?
+  radius_km        Int      @default(10)
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  // Relations
+  user     Profile  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  bookings Booking[]
+  reviews  Review[]
+
+  @@map("worker_profiles")
+}
+
+// Bookings between customers and workers
+model Booking {
+  id                 String   @id @default(uuid())
+  customer_id        String
+  worker_id          String
+  service_type       String
+  description        String?
+  scheduled_date     DateTime
+  scheduled_time     String?
+  address            String?
+  latitude           Float?
+  longitude          Float?
+  status             String   @default("pending") // pending | accepted | rejected | in_progress | completed | cancelled
+  price_quoted       Float?
+  price_agreed       Float?
+  customer_confirmed Boolean  @default(false)
+  created_at         DateTime @default(now())
+  updated_at         DateTime @updatedAt
+
+  // Relations
+  customer     Profile       @relation("CustomerBookings", fields: [customer_id], references: [id])
+  worker       WorkerProfile @relation(fields: [worker_id], references: [id])
+  messages     Message[]
+  review       Review?
+  notifications Notification[]
+
+  @@map("bookings")
+}
+
+// Chat messages
+model Message {
+  id         String   @id @default(uuid())
+  booking_id String
+  sender_id  String
+  message    String
+  is_read    Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  // Relations
+  booking Booking @relation(fields: [booking_id], references: [id], onDelete: Cascade)
+  sender  Profile @relation(fields: [sender_id], references: [id])
+
+  @@map("messages")
+}
+
+// Reviews for workers
+model Review {
+  id          String   @id @default(uuid())
+  booking_id  String   @unique
+  customer_id String
+  worker_id   String
+  rating      Int      // 1 to 5
+  review_text String?
+  created_at  DateTime @default(now())
+
+  // Relations
+  booking Booking       @relation(fields: [booking_id], references: [id], onDelete: Cascade)
+  customer Profile      @relation(fields: [customer_id], references: [id])
+  worker  WorkerProfile @relation(fields: [worker_id], references: [id])
+
+  @@map("reviews")
+}
+
+// User notifications
+model Notification {
+  id         String   @id @default(uuid())
+  user_id    String
+  title      String
+  message    String
+  type       String   // booking_request | booking_accepted | booking_rejected | new_message | review_received
+  is_read    Boolean  @default(false)
+  booking_id String?
+  created_at DateTime @default(now())
+
+  // Relations
+  user    Profile  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  booking Booking? @relation(fields: [booking_id], references: [id])
+
+  @@map("notifications")
+}
