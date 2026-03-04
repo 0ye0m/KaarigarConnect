@@ -211,10 +211,8 @@ export function AuthPage() {
       <div className="hidden lg:flex lg:w-1/2 bg-muted/30 p-12 flex-col justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xl">
-              K
-            </div>
-            <span className="font-semibold text-xl text-foreground">KaarigarConnect.</span>
+            
+            <span className="font-bold text-2xl text-foreground"><strong>KaarigarConnect.</strong></span>
           </div>
         </div>
 
